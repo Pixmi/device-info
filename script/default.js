@@ -42,6 +42,14 @@ function Browser() {
             // 有這段資料表示屬於 chrome 或 edge
             return `${agData.brands[1].brand} ${agData.brands[1].version}`;
         } else {
+            let line = window.navigator.userAgent.match(/(Line)\/([0-9.]+)/ig);
+            let fb = window.navigator.userAgent.match(/(FBAN)/ig);
+            if (line) {
+                subInfo.textContent = `LINE App ${line[2]}`;
+            } else
+            if (fb) {
+                subInfo.textContent = `Facebook App`;
+            }
             // firefox
             if (md.version('Firefox')) {
                 return `Firefox ${md.version('Firefox')}`;
@@ -50,16 +58,6 @@ function Browser() {
             if (md.version('Safari')) {
                 return `Safari ${md.version('Safari')}`;
             } else {
-                let line = window.navigator.userAgent.match(/(Line)\/([0-9.]+)/ig);
-                let fb = window.navigator.userAgent.match(/(FBAN)/ig);
-                if (line) {
-                    subInfo.textContent = `LINE App ${line[2]}`;
-                } else
-                if (fb) {
-                    subInfo.textContent = `Facebook App`;
-                } else {
-                    subInfo.textContent = window.navigator.userAgent;
-                }
                 return `Webkit ${md.version('Webkit')}`;
             }
         }
