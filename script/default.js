@@ -57,7 +57,7 @@ function Browser() {
 
 window.addEventListener('DOMContentLoaded', (event) => {
     const LabelOS = document.querySelector('#os');
-    const LabelBrowser = document.querySelector('#Browser');
+    const LabelBrowser = document.querySelector('#browser');
     const LabelWidth = document.querySelector('#width');
     const LabelHeight = document.querySelector('#height');
 
