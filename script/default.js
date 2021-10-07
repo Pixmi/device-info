@@ -22,7 +22,7 @@ function deviceOS() {
     if ((md.match('iPhone') || md.match('iPad')) && md.version('iOS') > 0) {
         os = `iOS ${md.version('iOS')}`;
     } else
-    if (md.versionStr('iOS').length) {
+    if (md.versionStr('iOS')) {
         os = `Mac OS ${md.versionStr('iOS')}`
     } else {
         os = md.os();
