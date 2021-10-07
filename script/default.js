@@ -12,16 +12,27 @@ console.log( md.versionStr('Build') );       // '4.1.A.0.562'
 console.log( md.match('playstation|xbox') ); // false
 */
 function deviceOS() {
+    let os;
     if (md.match('Windows NT') && md.version('Windows NT') > 0) {
-        return `Windows ${md.version('Windows NT')}`;
+        os = `Windows ${md.version('Windows NT')}`;
     } else
     if (md.match('Android') && md.version('Android') > 0) {
-        return `Android OS ${md.version('Android')}`;
+        os = `Android OS ${md.version('Android')}`;
     } else
     if ((md.match('iPhone') || md.match('iPad')) && md.version('iOS') > 0) {
-        return `iOS ${md.version('iOS')}`;
+        os = `iOS ${md.version('iOS')}`;
     } else {
-        return '-';
+        os = window.navigator.userAgent;
     }
+    return os;
 }
-console.log(deviceOS());
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    const LabelOS = document.querySelector('#os');
+    const LabelWidth = document.querySelector('#width');
+    const LabelHeight = document.querySelector('#height');
+
+    LabelOS.value = deviceOS();
+    LabelWidth.value = window.innerWidth;
+    LabelHeight.value = window.innerHeight;
+});
