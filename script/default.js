@@ -71,9 +71,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const LabelBrowser = document.querySelector('#browser');
     const LabelWidth = document.querySelector('#width');
     const LabelHeight = document.querySelector('#height');
+    const labelUserAgent = document.querySelector('#user_agent');
 
     LabelOS.value = deviceOS();
     LabelBrowser.value = Browser();
     LabelWidth.value = window.innerWidth;
     LabelHeight.value = window.innerHeight;
+    labelUserAgent.textContent = window.navigator.userAgent;
 });
