@@ -31,25 +31,27 @@ function deviceOS() {
 }
 
 function Browser() {
+    let subInfo = document.querySelector('#sub_info');
+    let line = window.navigator.userAgent.match(/(Line)\/([0-9.]+)/);
+    let fb = window.navigator.userAgent.match(/(FBAN)/);
+    if (line) {
+        subInfo.textContent = `LINE App ${line[2]}`;
+        subInfo.classList.remove('d-none');
+    }
+    if (fb) {
+        subInfo.textContent = `Facebook App`;
+        subInfo.classList.remove('d-none');
+    }
     if (md.userAgent()) {
         // 這邊屬於行動裝置
         return `${md.userAgent()} ${md.version(md.userAgent())}`;
     } else {
         let agData = window.navigator.userAgentData || false;
-        let subInfo = document.querySelector('#sub_info');
         // 非行動裝置或 webview
         if (agData) {
             // 有這段資料表示屬於 chrome 或 edge
             return `${agData.brands[1].brand} ${agData.brands[1].version}`;
         } else {
-            let line = window.navigator.userAgent.match(/(Line)\/([0-9.]+)/);
-            let fb = window.navigator.userAgent.match(/(FBAN)/);
-            if (line) {
-                subInfo.textContent = `LINE App ${line[2]}`;
-            } else
-            if (fb) {
-                subInfo.textContent = `Facebook App`;
-            }
             // firefox
             if (md.version('Firefox')) {
                 return `Firefox ${md.version('Firefox')}`;
