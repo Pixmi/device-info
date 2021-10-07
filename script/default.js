@@ -36,7 +36,8 @@ function Browser() {
         return `${md.userAgent()} ${md.version(md.userAgent())}`;
     } else {
         let agData = window.navigator.userAgentData || false;
-        // 非行動裝置
+        let subInfo = document.querySelector('#sub_info');
+        // 非行動裝置或 webview
         if (agData) {
             // 有這段資料表示屬於 chrome 或 edge
             return `${agData.brands[1].brand} ${agData.brands[1].version}`;
@@ -45,11 +46,21 @@ function Browser() {
             if (md.version('Firefox')) {
                 return `Firefox ${md.version('Firefox')}`;
             } else
-            // chrome
+            // safari
             if (md.version('Safari')) {
                 return `Safari ${md.version('Safari')}`;
             } else {
-                return window.navigator.userAgent;
+                let line = window.navigator.userAgent.match(/(Line)\/([0-9.]+)/ig);
+                let fb = window.navigator.userAgent.match(/(FBAN)/ig);
+                if (line) {
+                    subInfo.textContent = `LINE App ${line[2]}`;
+                } else
+                if (fb) {
+                    subInfo.textContent = `Facebook App`;
+                } else {
+                    subInfo.textContent = window.navigator.userAgent;
+                }
+                return `Webkit ${md.version('Webkit')}`;
             }
         }
     }
