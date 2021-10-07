@@ -42,8 +42,8 @@ function Browser() {
             // 有這段資料表示屬於 chrome 或 edge
             return `${agData.brands[1].brand} ${agData.brands[1].version}`;
         } else {
-            let line = window.navigator.userAgent.match(/(Line)\/([0-9.]+)/ig);
-            let fb = window.navigator.userAgent.match(/(FBAN)/ig);
+            let line = window.navigator.userAgent.match(/(Line)\/([0-9.]+)/);
+            let fb = window.navigator.userAgent.match(/(FBAN)/);
             if (line) {
                 subInfo.textContent = `LINE App ${line[2]}`;
                 subInfo.classList.remove('d-none');
