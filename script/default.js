@@ -21,18 +21,48 @@ function deviceOS() {
     } else
     if ((md.match('iPhone') || md.match('iPad')) && md.version('iOS') > 0) {
         os = `iOS ${md.version('iOS')}`;
+    } else
+    if (md.versionStr('iOS').length) {
+        os = `Mac OS ${md.versionStr('iOS')}`
     } else {
-        os = window.navigator.userAgent;
+        os = md.os();
     }
     return os;
 }
 
+function Browser() {
+    if (md.userAgent()) {
+        // 這邊屬於行動裝置
+        return `${md.userAgent()} ${md.version(md.userAgent())}`;
+    } else {
+        let agData = window.navigator.userAgentData || false;
+        // 非行動裝置
+        if (agData) {
+            // 有這段資料表示屬於 chrome 或 edge
+            return `${agData.brands[1].brand} ${agData.brands[1].version}`;
+        } else {
+            // firefox
+            if (md.version('Firefox')) {
+                return `Firefox ${md.version('Firefox')}`;
+            } else
+            // chrome
+            if (md.version('Safari')) {
+                return `Safari ${md.version('Safari')}`;
+            } else {
+                return window.navigator.userAgent;
+            }
+        }
+    }
+}
+
 window.addEventListener('DOMContentLoaded', (event) => {
     const LabelOS = document.querySelector('#os');
+    const LabelBrowser = document.querySelector('#Browser');
     const LabelWidth = document.querySelector('#width');
     const LabelHeight = document.querySelector('#height');
 
     LabelOS.value = deviceOS();
+    LabelBrowser.value = Browser();
     LabelWidth.value = window.innerWidth;
     LabelHeight.value = window.innerHeight;
 });
