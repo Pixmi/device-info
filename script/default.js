@@ -18,7 +18,7 @@ function deviceOS() {
     if (md.match('Android') && md.version('Android') > 0) {
         return `Android OS ${md.version('Android')}`;
     } else
-    if ((md.match('iOS') || md.match('iPad')) && md.version('iOS') > 0) {
+    if ((md.match('iPhone') || md.match('iPad')) && md.version('iOS') > 0) {
         return `iOS ${md.version('iOS')}`;
     } else {
         return '-';
