@@ -46,9 +46,11 @@ function Browser() {
             let fb = window.navigator.userAgent.match(/(FBAN)/ig);
             if (line) {
                 subInfo.textContent = `LINE App ${line[2]}`;
+                subInfo.classList.remove('d-none');
             } else
             if (fb) {
                 subInfo.textContent = `Facebook App`;
+                subInfo.classList.remove('d-none');
             }
             // firefox
             if (md.version('Firefox')) {
