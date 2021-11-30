@@ -22,14 +22,12 @@ function deviceOS() {
 function Browser() {
     let subInfo = document.querySelector('#sub_info');
     let line = window.navigator.userAgent.match(/(Line)\/([0-9.]+)/);
-    let fb = window.navigator.userAgent.match(/(FBAN)/);
+    let fb = window.navigator.userAgent.match(/(FB_)/);
     if (line) {
         subInfo.textContent = `LINE App ${line[2]}`;
-        subInfo.classList.remove('d-none');
     }
     if (fb) {
-        subInfo.textContent = `Facebook App`;
-        subInfo.classList.remove('d-none');
+        subInfo.innerHTML = `<div>Facebook App</div><div>${window.navigator.userAgent}</div>`;
     }
     if (md.userAgent()) {
         // 這邊屬於行動裝置
